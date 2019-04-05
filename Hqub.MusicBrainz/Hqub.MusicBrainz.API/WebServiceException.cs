@@ -56,31 +56,5 @@ namespace Hqub.MusicBrainz.API
             StatusCode = statusCode;
             Uri = uri;
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WebServiceException"/> class.
-        /// </summary>
-        private WebServiceException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-            this.StatusCode = (HttpStatusCode)info.GetValue("StatusCode", typeof(HttpStatusCode));
-            this.Uri = info.GetString("Uri");
-        }
-
-        /// <summary>
-        /// Sets the SerializationInfo with information about the exception.
-        /// </summary>
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            if (info == null)
-            {
-                throw new ArgumentNullException("info");
-            }
-
-            info.AddValue("StatusCode", StatusCode);
-            info.AddValue("Uri", Uri);
-
-            base.GetObjectData(info, context);
-        }
     }
 }
